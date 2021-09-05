@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :streams
   root to: 'home#index'
   devise_for :viewers
   devise_for :admins
