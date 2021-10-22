@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'tracks/index'
   resources :streams
   root to: 'home#index'
   devise_for :viewers
