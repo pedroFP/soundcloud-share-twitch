@@ -1,2 +1,4 @@
-%h1 Tracks#index
-%p Find me in app/views/tracks/index.html.erb
+%h1.title.is-1 Tracks
+
+- @tracks.each do |track|
+  = track.soundcloud_url.html_safe
