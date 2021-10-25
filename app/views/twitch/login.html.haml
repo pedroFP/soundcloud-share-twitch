@@ -1,2 +1,14 @@
 %h1 Twitch#login
 %p Find me in app/views/twitch/login.html.erb
+
+:javascript
+  let twitchParams = window.location.hash.replace('#', '').split('&')
+  twitchParams.forEach(param => {
+    const attribute = param.split('=')
+    const attribute_name = attribute[0]
+    const attribute_value = attribute[1]
+
+    if (attribute_name == 'access_token') {
+      document.cookie = attribute
+    }
+  })
