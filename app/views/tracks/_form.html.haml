@@ -1,0 +1,15 @@
+= form_with(model: track, local: true) do |form|
+  - if track.errors.any?
+    #error_explanation.notification.is-danger
+      %h3.title.is-3
+        = pluralize(track.errors.count, "error")
+        prohibited this track from being saved:
+      %ul
+        - track.errors.full_messages.each do |message|
+          %li.is-4
+            = message
+  .field
+    = form.label :soundcloud_url, class: 'label'
+    = form.text_field :soundcloud_url, class: 'input'
+  .actions
+    = form.submit 'Save', class: 'button is-success'

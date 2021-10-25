@@ -1,8 +1,9 @@
 Rails.application.routes.draw do
-  get 'twitch/login'
-  resources :streams
   root to: 'home#index'
+  get 'twitch/login'
   devise_for :viewers
   devise_for :admins
+  resources :streams
+  resources :tracks
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
