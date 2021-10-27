@@ -1,6 +1,3 @@
-%h1 Twitch#login
-%p Find me in app/views/twitch/login.html.erb
-
 :javascript
   let twitchParams = window.location.hash.replace('#', '').split('&')
   twitchParams.forEach(param => {
@@ -13,7 +10,10 @@
       $.ajax({
         url: '/twitch/sign_user',
         type: "POST",
-        dataType: 'html'
+        dataType: 'html',
+        success: function(result) {
+        window.location='/tracks'
+        }
       });
     }   
   })
