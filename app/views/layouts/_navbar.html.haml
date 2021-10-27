@@ -15,7 +15,10 @@
           Tracks
     .navbar-end
       .navbar-item
-        .buttons
-          %a.button.is-light{href: twitch_login_url}
-            %i.fab.fa-twitch.is-dark.fa-lg
-            &nbsp; Log in
+        - unless viewer_signed_in?
+          .buttons
+            %a.button.is-light{href: twitch_login_url}
+              %i.fab.fa-twitch.is-dark.fa-lg
+              &nbsp; Log in
+        - else
+          = current_viewer.twitch_display_name

@@ -10,5 +10,10 @@
 
     if (attribute_name == 'access_token') {
       document.cookie = param
-    }
+      $.ajax({
+        url: '/twitch/sign_user',
+        type: "POST",
+        dataType: 'html'
+      });
+    }   
   })
