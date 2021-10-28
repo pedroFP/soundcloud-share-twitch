@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Title:
+  = @stream.title
+%p
+  %strong Aired at:
+  = @stream.aired_at
+%p
+  %strong Receiving tracks:
+  = @stream.receiving_tracks
+= link_to 'Edit', edit_stream_path(@stream)
+|
+= link_to 'Back', streams_path

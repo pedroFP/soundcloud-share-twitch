@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_05_184710) do
+ActiveRecord::Schema.define(version: 2021_10_22_025021) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,6 +35,14 @@ ActiveRecord::Schema.define(version: 2021_09_05_184710) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "tracks", force: :cascade do |t|
+    t.bigint "viewer_id", null: false
+    t.string "soundcloud_url"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["viewer_id"], name: "index_tracks_on_viewer_id"
+  end
+
   create_table "viewers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -47,4 +55,5 @@ ActiveRecord::Schema.define(version: 2021_09_05_184710) do
     t.index ["reset_password_token"], name: "index_viewers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "tracks", "viewers"
 end
