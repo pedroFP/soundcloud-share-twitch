@@ -9,7 +9,9 @@
   #navbarBasicExample.navbar-menu
     .navbar-start
       %a.navbar-item
-        Streams
+        = link_to streams_path, class: 'navbar-item' do
+          %strong.acid-green
+            Streams
       = link_to tracks_path, class: 'navbar-item' do
         %strong.acid-green
           Tracks
