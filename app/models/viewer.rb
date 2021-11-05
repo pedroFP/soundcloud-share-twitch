@@ -8,6 +8,8 @@ class Viewer < ApplicationRecord
 
   protected
 
+  has_many :tracks, dependent: :destroy
+
   def password_required?
     return false if skip_password_validation
     super
