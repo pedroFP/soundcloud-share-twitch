@@ -1,10 +1,22 @@
-.box
-  %article.media
-    .media-left
-      %h3
-        = track.viewer.twitch_display_name
-      %figure.image.is-64x64
-        %img{:alt => "Image", :src => track.viewer.profile_image_url}/
-    .media-content
-      .content
-        = track.soundcloud_url.html_safe
+%article.media
+  %figure.media-left
+    %p.image.is-64x64
+      %img{:src => track.viewer.profile_image_url}/
+  .media-content
+    .content
+      %p
+        %strong
+          = track.viewer.twitch_display_name
+      = track.soundcloud_url.html_safe
+    %nav.level.is-mobile
+      .level-left
+        %a.level-item
+          %span.icon.is-small
+            %i.fas.fa-reply
+        %a.level-item
+          %span.icon.is-small
+            %i.fas.fa-retweet
+        %a.level-item
+          %span.icon.is-small
+            %i.fas.fa-heart
+  .media-right
