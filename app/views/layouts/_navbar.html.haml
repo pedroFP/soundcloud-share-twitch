@@ -22,7 +22,7 @@
             %a.navbar-link
               = current_viewer.twitch_display_name
             .navbar-dropdown
-              = link_to destroy_viewer_session_path(current_viewer), method: :delete, class: 'navbar-item' do
+              = link_to destroy_viewer_session_path, method: :delete, class: 'navbar-item' do
                 Sign out
         - else
           .buttons
