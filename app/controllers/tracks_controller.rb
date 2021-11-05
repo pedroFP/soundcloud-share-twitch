@@ -13,10 +13,10 @@ class TracksController < ApplicationController
 
   def create
     @track = Track.new(track_params)
-    @track.viewer = Viewer.first
+    @track.viewer = current_viewer
     respond_to do |format|
       if @track.save
-        format.html { redirect_to root_path, notice: "Track was successfully created." }
+        format.html { redirect_to tracks_path, notice: "Track was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
