@@ -15,10 +15,15 @@
           Tracks
     .navbar-end
       .navbar-item
-        - unless viewer_signed_in?
+        - if viewer_signed_in?
+          .navbar-item.has-dropdown.is-hoverable
+            %a.navbar-link
+              = current_viewer.twitch_display_name
+            .navbar-dropdown
+              = link_to destroy_viewer_session_path(current_viewer), method: :delete, class: 'navbar-item' do
+                Sign out
+        - else
           .buttons
             %a.button.is-light{href: twitch_login_url}
               %i.fab.fa-twitch.is-dark.fa-lg
               &nbsp; Log in
-        - else
-          = current_viewer.twitch_display_name
