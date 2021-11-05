@@ -23,9 +23,8 @@ class TwitchController < ApplicationController
       viewer.skip_password_validation = true
     end
 
+    cookies[:twitch_access_token] = access_token
+
     sign_in @viewer
-
-    redirect_to tracks_path
   end
-
 end
