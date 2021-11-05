@@ -4,7 +4,7 @@
       %h3
         = track.viewer.twitch_display_name
       %figure.image.is-64x64
-        %img{:alt => "Image", :src => "https://static-cdn.jtvnw.net/user-default-pictures-uv/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-300x300.png"}/
+        %img{:alt => "Image", :src => track.viewer.profile_image_url}/
     .media-content
       .content
         = track.soundcloud_url.html_safe

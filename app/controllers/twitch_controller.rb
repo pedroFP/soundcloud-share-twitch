@@ -15,11 +15,11 @@ class TwitchController < ApplicationController
     }
     response = RestClient.get(url, headers)
     viewer_data = JSON.parse(response.body)['data'].first
-
     @viewer = Viewer.find_or_create_by(twitch_id: viewer_data['id']) do |viewer|
       viewer.twitch_login = viewer_data['login']
       viewer.twitch_display_name = viewer_data['display_name']
       viewer.email = viewer_data['email']
+      viewer.profile_image_url = viewer_data['profile_image_url']
       viewer.skip_password_validation = true
     end
 
