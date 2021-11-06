@@ -22,3 +22,6 @@
 
 .tracks
   = render @tracks
+%br/
+.tracks-pagination
+  = pagy_bulma_nav(@pagy).html_safe
