@@ -1,8 +1,9 @@
 class TracksController < ApplicationController
   before_action :set_track, only: %i[show destroy]
-  
+
   def index
-    @tracks = Track.all
+    @tracks = Track.all.joins(:viewer)
+    @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
   end
 
   def show; end
