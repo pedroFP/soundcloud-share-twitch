@@ -5,9 +5,10 @@
   .media-content
     .content
       %p
-        %strong
-          = track.viewer.twitch_display_name
-      = track.soundcloud_url.html_safe
+        = link_to twitch_account_link(track.viewer.twitch_login), target: :blank, class: 'has-text-black' do
+          %strong
+            = track.viewer.twitch_display_name
+        = track.soundcloud_url.html_safe
     %nav.level.is-mobile
       .level-left
         %a.level-item

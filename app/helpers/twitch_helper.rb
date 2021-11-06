@@ -14,4 +14,8 @@ module TwitchHelper
 
     "#{twitch_url}?#{client_id}&#{redirect_url}&#{response_type}&#{scope}&#{state}"
   end
+
+  def twitch_account_link(user_name)
+    "https://www.twitch.tv/#{user_name}"
+  end
 end
