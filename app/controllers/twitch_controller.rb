@@ -16,6 +16,11 @@ class TwitchController < ApplicationController
       viewer.skip_password_validation = true
     end
 
+    @viewer.subscriber = Twitch.check_user_subscription(broadcaster_id: ENV['FORERO_ID'],
+                                                        user_id: @viewer.twitch_id,
+                                                        access_token: access_token)
+    @viewer.save
+
     cookies[:twitch_access_token] = access_token
 
     sign_in @viewer
