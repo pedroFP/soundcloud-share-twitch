@@ -1,0 +1,47 @@
+.card.stream
+  .card-content.stream-card-content
+    .media
+      .media-content
+        .level
+          .level-left
+            %p.title.acid-green= stream.title
+          .level-right
+            %span.tag.is-dark
+              %time{:datetime => stream.aired_at}= stream.aired_at.strftime('%d/%M/%Y-%r')
+            &nbsp;
+            - if stream.receiving_tracks?
+              %span.tag.is-danger
+                Live &nbsp; 
+                %i.fas.fa-microphone
+            - else
+              %i.fas.fa-bed.has-text-white
+    %hr/
+    .content
+      %h3.is-3.has-text-white Samples
+      %article.panel.is-link.samples-panel
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-file-audio{"aria-hidden" => "true"}
+          bulma
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-file-audio{"aria-hidden" => "true"}
+          marksheet
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-file-audio{"aria-hidden" => "true"}
+          minireset.css
+        %a.panel-block
+          %span.panel-icon
+            %i.fas.fa-file-audio{"aria-hidden" => "true"}
+          jgthms.github.io
+      - if current_admin
+        .level
+          .level-left
+            = link_to 'Edit', edit_stream_path(stream)
+            &nbsp;|&nbsp;
+            = link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' }
+            &nbsp;|&nbsp;
+            = link_to 'Show', stream
+          .level-right
+%br/
