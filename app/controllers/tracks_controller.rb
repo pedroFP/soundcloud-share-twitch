@@ -2,6 +2,8 @@ class TracksController < ApplicationController
   include Pagy::Backend
   Pagy::DEFAULT[:items] = 10
 
+  before_action :authenticate_viewer!, except: %i[index show]
+
   before_action :set_track, only: %i[show destroy]
 
   def index

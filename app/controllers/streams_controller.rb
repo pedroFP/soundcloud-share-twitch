@@ -1,5 +1,6 @@
 class StreamsController < ApplicationController
-  before_action :set_stream, only: %i[ show edit update destroy ]
+  before_action :authenticate_admin!, except: %i[index show]
+  before_action :set_stream, only: %i[show edit update destroy]
 
   # GET /streams or /streams.json
   def index
