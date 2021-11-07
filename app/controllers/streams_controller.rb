@@ -3,7 +3,7 @@ class StreamsController < ApplicationController
 
   # GET /streams or /streams.json
   def index
-    @streams = Stream.all
+    @streams = Stream.all.order(:created_at)
   end
 
   # GET /streams/1 or /streams/1.json
