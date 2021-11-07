@@ -1,6 +1,7 @@
 = form_with(model: track, local: true) do |form|
   - if track.errors.any?
     #error_explanation.notification.is-danger
+      %button.delete
       %h3.title.is-3
         = pluralize(track.errors.count, "error")
         prohibited this track from being saved:
