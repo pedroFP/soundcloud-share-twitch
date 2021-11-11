@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_11_013814) do
+ActiveRecord::Schema.define(version: 2021_11_11_015749) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,8 @@ ActiveRecord::Schema.define(version: 2021_11_11_013814) do
     t.string "soundcloud_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "stream_id", null: false
+    t.index ["stream_id"], name: "index_tracks_on_stream_id"
     t.index ["viewer_id"], name: "index_tracks_on_viewer_id"
   end
 
@@ -63,5 +65,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_013814) do
   end
 
   add_foreign_key "streams", "admins"
+  add_foreign_key "tracks", "streams"
   add_foreign_key "tracks", "viewers"
 end
