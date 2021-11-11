@@ -3,7 +3,4 @@
 one:
   viewer: one
   soundcloud_url: MyString
-
-two:
-  viewer: two
-  soundcloud_url: MyString
+  stream: one
