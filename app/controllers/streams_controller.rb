@@ -9,6 +9,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/1 or /streams/1.json
   def show
+    @tracks = @stream.tracks
   end
 
   # GET /streams/new
