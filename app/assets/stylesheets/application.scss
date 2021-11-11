@@ -16,12 +16,25 @@
 
  @import 'bulma';
 
+.is-acid-green {
+  color: black !important;
+  background-color: #c9f100 !important;
+}
+
  .acid-green {
   color: #c9f100 !important;
  }
 
 .acid-red {
   color: #e31839 !important;
+ }
+
+ .is-soundcloud-orange {
+  background-color: #ff5500 !important;
+ }
+
+ .soundcloud-orange {
+  color: #ff5500 !important;
  }
 
 
