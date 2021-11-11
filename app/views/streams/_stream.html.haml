@@ -4,7 +4,9 @@
       .media-content
         .level
           .level-left
-            %p.title.acid-green= stream.title
+            = link_to stream do
+              %p.title.acid-green
+                = stream.title
           .level-right
             %span.tag.is-dark
               %time{:datetime => stream.aired_at}= stream.aired_at.strftime('%d/%M/%Y-%r')
