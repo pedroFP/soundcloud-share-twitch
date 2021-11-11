@@ -8,7 +8,7 @@
               %p.title.acid-green
                 = stream.title
           .level-right
-            %span.tag.is-dark
+            %span.tag.is-link
               %time{:datetime => stream.aired_at}= stream.aired_at.strftime('%d/%M/%Y-%r')
             &nbsp;
             - if stream.receiving_tracks?
@@ -19,7 +19,7 @@
               %i.fas.fa-bed.has-text-white
     %hr/
     .content
-      %h3.is-3.has-text-white Samples
+      %h4.is-4.has-text-white Samples
       %article.panel.is-link.samples-panel
         %a.panel-block
           %span.panel-icon

@@ -1,12 +1,5 @@
-.columns
-  .column.is-four-fifths
-    %h1.title.is-1 Tracks
-  .column.level
-    .level-right
-      = link_to new_track_path do
-        %button.is-primary.acid-green-button.button.level-item
-          %strong New track
-
+= render @stream
+%br
 .columns
   .column.is-four-fifths
     .subtitle.is-6 
