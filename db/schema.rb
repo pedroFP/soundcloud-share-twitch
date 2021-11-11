@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_06_032408) do
+ActiveRecord::Schema.define(version: 2021_11_11_013814) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,8 @@ ActiveRecord::Schema.define(version: 2021_11_06_032408) do
     t.boolean "receiving_tracks"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "admin_id", null: false
+    t.index ["admin_id"], name: "index_streams_on_admin_id"
   end
 
   create_table "tracks", force: :cascade do |t|
@@ -60,5 +62,6 @@ ActiveRecord::Schema.define(version: 2021_11_06_032408) do
     t.index ["reset_password_token"], name: "index_viewers_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "streams", "admins"
   add_foreign_key "tracks", "viewers"
 end
