@@ -3,8 +3,9 @@ class TracksController < ApplicationController
   Pagy::DEFAULT[:items] = 10
 
   before_action :authenticate_viewer!, except: %i[index show]
-
   before_action :set_track, only: %i[show destroy]
+  before_action :set_stream, except: %i[index show]
+
 
   def index
     @tracks = Track.all.joins(:viewer)
@@ -15,7 +16,7 @@ class TracksController < ApplicationController
   def show; end
 
   def new
-    @track = Track.new
+    @track = @stream.tracks.build
   end
 
   def create
@@ -38,8 +39,12 @@ class TracksController < ApplicationController
     @track = Track.find(params[:id])
   end
 
+  def set_stream
+    @stream = Stream.find(params[:stream_id])
+  end
+
   def track_params
-    params.require(:track).permit(:soundcloud_url)
+    params.require(:track).permit(:soundcloud_url, :stream_id, :viewer_id)
   end
 
 end

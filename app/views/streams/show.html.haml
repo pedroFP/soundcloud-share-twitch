@@ -2,8 +2,12 @@
 %br
 .columns
   .column.is-four-fifths
-    .subtitle.is-6 
-      %h6
+    = link_to new_stream_track_path(@stream), class: 'button' do
+      %strong
+        Submit track &nbsp;
+      %i.fab.fa-soundcloud.fa-2x.soundcloud-orange
+    .content.is-small
+      %p
         Warning, valume may be too high
         %i.fa.fa-volume-up
   .column.has-text-right

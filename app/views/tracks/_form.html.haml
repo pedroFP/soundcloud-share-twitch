@@ -1,4 +1,4 @@
-= form_with(model: track, local: true) do |form|
+= form_with(model: [stream, track], local: true) do |form|
   - if track.errors.any?
     #error_explanation.notification.is-danger
       %button.delete
@@ -12,5 +12,7 @@
   .field
     = form.label :soundcloud_url, class: 'label'
     = form.text_field :soundcloud_url, class: 'input'
+    = form.hidden_field :stream_id
+    = form.hidden_field :viewer_id
   .actions
     = form.submit 'Save', class: 'button is-success'
