@@ -17,3 +17,9 @@ require("bulma/nav-bar")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
+function getCookie(name) {
+  const value = `; ${document.cookie}`;
+  const parts = value.split(`; ${name}=`);
+  if (parts.length === 2) return parts.pop().split(';').shift();
+}

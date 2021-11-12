@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'home#index'
+  root to: 'tracks#index'
+  get 'twitch/login'
+  post 'twitch/sign_user'
   devise_for :viewers
   devise_for :admins
   resources :streams
