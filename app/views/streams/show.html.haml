@@ -13,7 +13,7 @@
   .column.has-text-right
     .search-form
       %label.checkbox
-        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
+        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => stream_tracks_path(@stream) } }
           Sort by subscribers
       %i.fab.fa-twitch.has-text-link
 
