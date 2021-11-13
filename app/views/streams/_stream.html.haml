@@ -40,10 +40,11 @@
       - if current_admin
         .level
           .level-left
-            = link_to 'Edit', edit_stream_path(stream)
-            &nbsp;|&nbsp;
-            = link_to 'Destroy', stream, method: :delete, data: { confirm: 'Are you sure?' }
-            &nbsp;|&nbsp;
-            = link_to 'Show', stream
+            = link_to edit_stream_path(stream), class: 'mr-1' do
+              %span.tag.is-light
+                Edit
+            = link_to stream, method: :delete, data: { confirm: 'Are you sure?' } do
+              %span.tag.is-danger
+                Delete
           .level-right
 %br/
