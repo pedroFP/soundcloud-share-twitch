@@ -1,6 +1,6 @@
 class StreamsController < ApplicationController
   include Pagy::Backend
-  Pagy::DEFAULT[:items] = 10
+  Pagy::DEFAULT[:items] = 8
 
   before_action :authenticate_admin!, except: %i[index show]
   before_action :set_stream, only: %i[show edit update destroy]
@@ -8,6 +8,7 @@ class StreamsController < ApplicationController
   # GET /streams or /streams.json
   def index
     @streams = Stream.all.order(:created_at)
+    @pagy, @streams = pagy(@streams)
   end
 
   # GET /streams/1 or /streams/1.json
