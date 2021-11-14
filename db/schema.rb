@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_27_050827) do
+ActiveRecord::Schema.define(version: 2021_11_06_032408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 2021_10_27_050827) do
     t.string "twitch_login"
     t.string "twitch_display_name"
     t.string "profile_image_url"
+    t.boolean "subscriber", default: false
     t.index ["email"], name: "index_viewers_on_email", unique: true
     t.index ["reset_password_token"], name: "index_viewers_on_reset_password_token", unique: true
   end

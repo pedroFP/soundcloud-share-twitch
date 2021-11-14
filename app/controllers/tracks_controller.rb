@@ -1,8 +1,13 @@
 class TracksController < ApplicationController
+  include Pagy::Backend
+  Pagy::DEFAULT[:items] = 10
+
   before_action :set_track, only: %i[show destroy]
-  
+
   def index
-    @tracks = Track.all
+    @tracks = Track.all.joins(:viewer)
+    @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
+    @pagy, @tracks = pagy(@tracks)
   end
 
   def show; end

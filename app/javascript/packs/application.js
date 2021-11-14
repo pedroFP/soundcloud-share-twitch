@@ -9,6 +9,7 @@ require("turbolinks").start()
 require("@rails/activestorage").start()
 require("channels")
 require("bulma/nav-bar")
+require("./tracks")
 
 
 // Uncomment to copy all static images under ../images to the output folder and reference
@@ -17,9 +18,3 @@ require("bulma/nav-bar")
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-function getCookie(name) {
-  const value = `; ${document.cookie}`;
-  const parts = value.split(`; ${name}=`);
-  if (parts.length === 2) return parts.pop().split(';').shift();
-}
