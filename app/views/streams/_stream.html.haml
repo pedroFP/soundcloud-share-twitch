@@ -21,22 +21,7 @@
     .content
       %h4.is-4.has-text-white Samples
       %article.panel.is-link.samples-panel
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-file-audio{"aria-hidden" => "true"}
-          bulma
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-file-audio{"aria-hidden" => "true"}
-          marksheet
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-file-audio{"aria-hidden" => "true"}
-          minireset.css
-        %a.panel-block
-          %span.panel-icon
-            %i.fas.fa-file-audio{"aria-hidden" => "true"}
-          jgthms.github.io
+        = render stream.samples
       - if current_admin
         .level
           .level-left

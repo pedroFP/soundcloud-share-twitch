@@ -7,7 +7,7 @@ class StreamsController < ApplicationController
 
   # GET /streams or /streams.json
   def index
-    @streams = Stream.all.order(:created_at)
+    @streams = Stream.all.order(:created_at).includes(:samples)
     @pagy, @streams = pagy(@streams)
   end
 
