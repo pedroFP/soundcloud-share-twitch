@@ -2,6 +2,10 @@
 
 class StreamsController < ApplicationController
   before_action :set_stream, only: %i[ show edit update destroy ]
+  before_action :authorize_stream, only: %i[ show edit update destroy ]
+  after_action :verify_authorized, only: %i[ new create show edit update destroy ]
+  after_action :verify_policy_scoped, only: :index
+
 
   # GET /streams or /streams.json
   def index
@@ -24,6 +28,7 @@ class StreamsController < ApplicationController
 
   # POST /streams or /streams.json
   def create
+    authorize Stream
     @stream = Stream.new(stream_params)
 
     respond_to do |format|
@@ -60,13 +65,18 @@ class StreamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stream
-      @stream = Stream.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def stream_params
-      params.require(:stream).permit(:title, :aired_at, :receiving_tracks)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stream
+    @stream = Stream.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def stream_params
+    params.require(:stream).permit(:title, :aired_at, :receiving_tracks)
+  end
+
+  def authorize_stream
+    authorize @stream
+  end
 end

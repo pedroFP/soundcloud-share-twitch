@@ -12,6 +12,26 @@ class StreamPolicy < ApplicationPolicy
     session.is_a?(Admin)
   end
 
+  def create?
+    session.is_a?(Admin)
+  end
+
+  def show?
+    session.is_a?(Viewer) || session.is_a?(Admin)
+  end
+
+  def edit?
+    session.is_a?(Admin)
+  end
+
+  def update?
+    session.is_a?(Admin)
+  end
+
+  def destroy?
+    session.is_a?(Admin)
+  end
+
  
   class Scope < Scope
     def resolve
