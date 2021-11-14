@@ -13,7 +13,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/1 or /streams/1.json
   def show
-    @tracks = @stream.tracks
+    @tracks = @stream.tracks.includes(:viewer)
     @pagy, @tracks = pagy(@tracks)
   end
 
