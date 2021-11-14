@@ -1,0 +1,22 @@
+.contianer.logging-in
+  .middle-div
+    %h1.title.is-1.acid-green.has-text-centered Logging in
+:javascript
+  let twitchParams = window.location.hash.replace('#', '').split('&')
+  twitchParams.forEach(param => {
+    const attribute = param.split('=')
+    const attribute_name = attribute[0]
+    const attribute_value = attribute[1]
+
+    if (attribute_name == 'access_token') {
+      document.cookie = param
+      $.ajax({
+        url: '/twitch/sign_user',
+        type: "POST",
+        dataType: 'html',
+        success: function(result) {
+        window.location='/tracks'
+        }
+      });
+    }   
+  })

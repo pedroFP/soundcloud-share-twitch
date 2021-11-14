@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  viewer: one
+  soundcloud_url: MyString
+
+two:
+  viewer: two
+  soundcloud_url: MyString
