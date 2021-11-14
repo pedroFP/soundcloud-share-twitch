@@ -1,4 +1,4 @@
-.card.stream
+.card{id: dom_id(stream)}
   .card-content.stream-card-content
     .media
       .media-content
@@ -20,16 +20,16 @@
     %hr/
     .content
       %h4.is-4.has-text-white Samples
-      %article.panel.is-link.samples-panel
-        = render stream.samples
       - if current_admin
-        .level
-          .level-left
-            = link_to edit_stream_path(stream), class: 'mr-1' do
-              %span.tag.is-light
-                Edit
-            = link_to stream, method: :delete, data: { confirm: 'Are you sure?' } do
-              %span.tag.is-danger
-                Delete
-          .level-right
+        .content
+          = render 'samples/form', sample: Sample.new, stream: stream
+      = render 'samples', stream: stream
+    - if current_admin
+      .content
+        = link_to edit_stream_path(stream), class: 'mr-1' do
+          %span.tag.is-light
+            Edit
+        = link_to stream, method: :delete, data: { confirm: 'Are you sure?' } do
+          %span.tag.is-danger
+            Delete
 %br/

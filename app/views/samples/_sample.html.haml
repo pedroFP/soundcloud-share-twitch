@@ -1,4 +1,9 @@
-= link_to sample.link, class: 'panel-block', target: '_blank' do
-  %span.panel-icon
-    %i.fas.fa-file-audio{"aria-hidden" => "true"}
-      = sample.name
+%tr{id: dom_id(sample)}
+  %td
+    = link_to sample.link, target: '_blank' do
+      %i.fas.fa-file-audio.has-text-black
+  %td.has-text-left
+    = sample.name
+  %td.has-text-right
+    = link_to stream_samples_path(sample.stream_id, sample) do
+      %i.fas.fa-trash-alt.has-text-danger
