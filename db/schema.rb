@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2021_11_14_014438) do
 
   create_table "samples", force: :cascade do |t|
     t.string "link"
+    t.string "name"
     t.bigint "stream_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
