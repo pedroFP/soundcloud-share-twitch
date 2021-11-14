@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 class StreamsController < ApplicationController
   before_action :set_stream, only: %i[ show edit update destroy ]
 
   # GET /streams or /streams.json
   def index
-    @streams = Stream.all
+    @streams = policy_scope(Stream.all)
   end
 
   # GET /streams/1 or /streams/1.json
@@ -12,6 +14,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/new
   def new
+    authorize Stream
     @stream = Stream.new
   end
 
