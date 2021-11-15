@@ -1,4 +1,11 @@
-= form_with(model: [stream, sample], local: true) do |form|
+= form_with(model: [stream, sample], remote: true) do |form|
+  - if sample.errors.any?
+    #error_explanation.notification.is-danger.is-small
+      %a.delete
+      %ul
+        - sample.errors.full_messages.each do |message|
+          %li
+            = message
   .columns
     .column
       .field
