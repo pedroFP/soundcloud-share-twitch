@@ -6,7 +6,7 @@ class TrackTest < ActiveSupport::TestCase
   end
 
   test 'it should not be valid' do
-    assert_not track.valid?
+    assert_not @track.valid?
   end
 
   test 'it should have a viewer' do
