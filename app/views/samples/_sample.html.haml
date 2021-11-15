@@ -5,5 +5,5 @@
   %td.has-text-left
     = sample.name
   %td.has-text-right
-    = link_to stream_samples_path(sample.stream_id, sample) do
+    = link_to stream_sample_path(sample.stream_id, sample), remote: true, method: :delete do
       %i.fas.fa-trash-alt.has-text-danger

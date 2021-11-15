@@ -21,7 +21,7 @@
     .content
       %h4.is-4.has-text-white Samples
       - if current_admin
-        .content
+        .content.samples-form
           = render 'samples/form', sample: Sample.new, stream: stream
       = render 'samples', stream: stream
     - if current_admin
