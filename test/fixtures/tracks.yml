@@ -1,6 +1,6 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  viewer: one
+  viewer: not_sub
   soundcloud_url: MyString
   stream: one
