@@ -6,7 +6,22 @@
       = link_to new_track_path do
         %button.is-primary.acid-green-button.button.level-item
           %strong New track
-%h6.subtitle.is-6 
-  Warning, valume may be too high
-  %i.fa.fa-volume-up
-= render @tracks
+
+.columns
+  .column.is-four-fifths
+    .subtitle.is-6 
+      %h6
+        Warning, valume may be too high
+        %i.fa.fa-volume-up
+  .column.has-text-right
+    .search-form
+      %label.checkbox
+        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
+          Sort by subscribers
+      %i.fab.fa-twitch.has-text-link
+
+.tracks
+  = render @tracks
+%br/
+.tracks-pagination
+  = pagy_bulma_nav(@pagy).html_safe
