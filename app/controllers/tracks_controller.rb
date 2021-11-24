@@ -8,7 +8,7 @@ class TracksController < ApplicationController
 
 
   def index
-    @tracks = Track.all.joins(:viewer)
+    @tracks = Track.all.includes(:viewer)
     @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
     @pagy, @tracks = pagy(@tracks)
   end
