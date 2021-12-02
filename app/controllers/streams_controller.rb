@@ -5,15 +5,14 @@ class StreamsController < ApplicationController
   Pagy::DEFAULT[:items] = 8
 
   before_action :set_stream, only: %i[show edit update destroy]
-  before_action :authorize_stream, only: %i[show edit update destroy]
+  before_action :authorize_stream, except: :index
   before_action :authenticate_admin!, except: %i[index show]
-  before_action :set_stream, only: %i[show edit update destroy]
-  after_action :verify_authorized, only: %i[new create show edit update destroy]
-  after_action :verify_policy_scoped, only: :index
+  after_action :verify_authorized
 
   # GET /streams or /streams.json
   def index
     @streams = Stream.all.order(:created_at).includes(:samples)
+    authorize @streams
     @pagy, @streams = pagy(@streams)
   end
 

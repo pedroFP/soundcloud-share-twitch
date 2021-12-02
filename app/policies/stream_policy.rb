@@ -1,11 +1,22 @@
 # frozen_string_literal: true
 
 class StreamPolicy < ApplicationPolicy
+
+  class Scope < Scope
+    def resolve
+      return scope if @session.is_a?(Viewer) || @session.is_a?(Admin)
+    end
+  end
+
   attr_reader :session, :stream
 
   def initialize(session, stream)
     @session = session
     @stream = stream
+  end
+
+  def index?
+    true
   end
 
   def new?
@@ -17,7 +28,7 @@ class StreamPolicy < ApplicationPolicy
   end
 
   def show?
-    session.is_a?(Viewer) || session.is_a?(Admin)
+    true
   end
 
   def edit?
@@ -30,12 +41,5 @@ class StreamPolicy < ApplicationPolicy
 
   def destroy?
     session.is_a?(Admin)
-  end
-
- 
-  class Scope < Scope
-    def resolve
-      return scope if session.is_a?(Viewer) || session.is_a?(Admin)
-    end
   end
 end
