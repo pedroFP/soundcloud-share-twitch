@@ -5,9 +5,9 @@ class StreamsController < ApplicationController
   Pagy::DEFAULT[:items] = 8
 
   before_action :set_stream, only: %i[show edit update destroy]
-  before_action :authorize_stream, except: :index
+  before_action :authorize_stream, except: %i[index show]
   before_action :authenticate_admin!, except: %i[index show]
-  after_action :verify_authorized
+  before_action :verify_authorized, except: %i[index new]
 
   # GET /streams or /streams.json
   def index
