@@ -1,5 +1,6 @@
 class SamplesController < ApplicationController
   before_action :set_stream
+  after_action :verify_authorized
 
   def destroy
     @sample = Sample.find(params[:id])

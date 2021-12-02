@@ -5,7 +5,7 @@ class TracksController < ApplicationController
   before_action :authenticate_viewer!, except: %i[index show]
   before_action :set_track, only: %i[show destroy]
   before_action :set_stream, except: %i[index show]
-
+  after_action :verify_authorized
 
   def index
     @tracks = Track.all.includes(:viewer)
