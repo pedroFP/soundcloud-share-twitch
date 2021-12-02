@@ -24,8 +24,16 @@
             .navbar-dropdown
               = link_to destroy_viewer_session_path, method: :delete, class: 'navbar-item' do
                 Sign out
-        - else
+        - elsif !current_admin
           .buttons
             %a.button.is-light{href: twitch_login_url}
               %i.fab.fa-twitch.is-dark.fa-lg
               &nbsp; Log in
+        - if admin_signed_in?
+          .navbar-item.has-dropdown.is-hoverable
+            %a.navbar-link
+              %i.fas.fa-user-shield
+              &nbsp; Admin
+            .navbar-dropdown
+              = link_to destroy_admin_session_path, method: :delete, class: 'navbar-item' do
+                Sign out
