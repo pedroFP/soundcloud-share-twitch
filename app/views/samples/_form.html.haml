@@ -1,0 +1,19 @@
+= form_with(model: [stream, sample], remote: true) do |form|
+  - if sample.errors.any?
+    #error_explanation.notification.is-danger.is-small
+      %a.delete
+      %ul
+        - sample.errors.full_messages.each do |message|
+          %li
+            = message
+  .columns
+    .column
+      .field
+        = form.text_field :name, class: 'input is-small', placeholder: :name
+    .column
+      .field
+        = form.text_field :link, class: 'input is-small', placeholder: :link
+        = form.hidden_field :stream_id, value: stream.id
+    .column.is-1
+      = form.submit 'Save', class: 'button is-success  is-small is-fullwidth'
+  
