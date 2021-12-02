@@ -31,8 +31,6 @@ class TracksController < ApplicationController
     end
   end
 
-  def destroy; end
-
   private
 
   def set_track
