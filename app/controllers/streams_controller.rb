@@ -24,8 +24,8 @@ class StreamsController < ApplicationController
 
   # GET /streams/new
   def new
-    authorize Stream
     @stream = Stream.new
+    authorize @stream
   end
 
   # GET /streams/1/edit
