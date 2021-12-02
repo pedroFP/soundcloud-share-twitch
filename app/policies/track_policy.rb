@@ -10,10 +10,10 @@ class TrackPolicy < ApplicationPolicy
   end
 
   def new?
-    user.is_a?(Viewer)
+    user.is_a? Viewer
   end
 
   def create?
-    user.is_a?(Viewer)
+    user.is_a? Viewer
   end
 end
