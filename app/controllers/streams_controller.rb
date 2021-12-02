@@ -5,7 +5,7 @@ class StreamsController < ApplicationController
   Pagy::DEFAULT[:items] = 8
 
   before_action :set_stream, only: %i[show edit update destroy]
-  before_action :authorize_stream, except: %i[index show]
+  before_action :authorize_stream, except: %i[index]
   before_action :authenticate_admin!, except: %i[index show]
   before_action :verify_authorized, except: %i[index new]
 
@@ -29,8 +29,7 @@ class StreamsController < ApplicationController
   end
 
   # GET /streams/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /streams or /streams.json
   def create
