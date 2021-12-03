@@ -35,5 +35,7 @@
               %i.fas.fa-user-shield
               &nbsp; Admin
             .navbar-dropdown
+              = link_to 'New stream', new_stream_path, class: 'navbar-item'
               = link_to destroy_admin_session_path, method: :delete, class: 'navbar-item' do
                 Sign out
+                
