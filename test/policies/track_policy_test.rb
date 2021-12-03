@@ -1,18 +1,20 @@
 require 'test_helper'
 
 class TrackPolicyTest < ActiveSupport::TestCase
-  def test_scope
+
+  setup do
+    @track = tracks(:one)
   end
 
-  def test_show
+  test 'Viewer should create tracks' do
+    @viewer = viewers(:not_sub)
+
+    assert_permit @viewer, @track, :create
   end
 
-  def test_create
-  end
+  test 'Admins should not create tracks' do
+    @admin = admins(:one)
 
-  def test_update
-  end
-
-  def test_destroy
+    refute_permit @admin, @track, :create
   end
 end
