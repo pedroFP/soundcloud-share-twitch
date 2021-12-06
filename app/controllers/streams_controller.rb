@@ -5,9 +5,8 @@ class StreamsController < ApplicationController
   Pagy::DEFAULT[:items] = 8
 
   before_action :set_stream, only: %i[show edit update destroy]
-  before_action :authorize_stream, except: %i[index new]
   before_action :authenticate_admin!, except: %i[index show]
-  before_action :verify_authorized, except: %i[index new]
+  after_action :verify_authorized
 
   # GET /streams or /streams.json
   def index
@@ -18,6 +17,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/1 or /streams/1.json
   def show
+    authorize @stream
     @tracks = @stream.tracks.includes(:viewer)
     @pagy, @tracks = pagy(@tracks)
   end
@@ -29,14 +29,15 @@ class StreamsController < ApplicationController
   end
 
   # GET /streams/1/edit
-  def edit; end
+  def edit
+    authorize @stream
+  end
 
   # POST /streams or /streams.json
   def create
-    authorize Stream
     @stream = Stream.new(stream_params)
     @stream.admin = current_admin
-
+    authorize @stream
     respond_to do |format|
       if @stream.save
         format.html { redirect_to @stream, notice: "Stream was successfully created." }
@@ -82,7 +83,4 @@ class StreamsController < ApplicationController
     params.require(:stream).permit(:title, :aired_at, :receiving_tracks)
   end
 
-  def authorize_stream
-    authorize @stream
-  end
 end
