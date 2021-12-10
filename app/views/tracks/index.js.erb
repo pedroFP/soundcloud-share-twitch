@@ -1,2 +1,34 @@
 $('.tracks').html("<%= j render @tracks %>")
 $('.tracks-pagination').html("<%= j pagy_bulma_nav(@pagy).html_safe %>")
+displaySoundCloudTracks()
+
+// Find a way to export these functions from the js files
+
+function displaySoundCloudTracks() {
+  if ($('.track').length > 0) {
+    $('.track').each((index, element) => {
+      const urlElement = $($(element).find('.soundcloud-url'))
+      const urlPath = urlElement.attr('href')
+      displaySoundCloudTrack(urlElement, urlPath)
+    }) 
+  }
+}
+
+function displaySoundCloudTrack(urlElement, urlPath) {
+  const settings = {
+    "async": true,
+    "crossDomain": true,
+    "url": "http://soundcloud.com/oembed",
+    "method": "POST",
+    "headers": {},
+    "data": {
+      "format": "json",
+      "url": urlPath,
+      "maxheight": "166"
+    }, success: (data) => {
+      urlElement.html(data.html)
+    }
+  }
+  
+  $.ajax(settings)
+}
