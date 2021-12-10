@@ -2,7 +2,11 @@ Rails.application.routes.draw do
   root to: 'tracks#index'
   get 'twitch/login'
   post 'twitch/sign_user'
-  devise_for :viewers, skip: %i[registration recoverable confirmable]
+  if ENV['RAILS_ENV'] == 'development'
+    devise_for :viewers
+  else
+    devise_for :viewers, skip: %i[registration recoverable confirmable]
+  end
   devise_for :admins
   resources :tracks, only: %i[index]
   resources :streams do
