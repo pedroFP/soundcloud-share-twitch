@@ -24,7 +24,7 @@ class TracksControllerTest < ActionDispatch::IntegrationTest
     sign_in @viewer
 
     track_params = {
-      soundcloud_url: 'lorem',
+      soundcloud_url: 'https://soundcloud.com/paintrips/star-chasers-prod',
       stream_id: @stream.id,
       viewer_id: @viewer.id
     }
