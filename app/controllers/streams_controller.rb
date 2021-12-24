@@ -18,7 +18,7 @@ class StreamsController < ApplicationController
   # GET /streams/1 or /streams/1.json
   def show
     authorize @stream
-    @tracks = @stream.tracks.includes(:viewer)
+    @tracks = @stream.tracks.order('created_at desc').includes(:viewer)
     @pagy, @tracks = pagy(@tracks)
   end
 

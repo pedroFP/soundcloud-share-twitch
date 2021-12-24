@@ -1,4 +1,4 @@
-%article.media{class: track.viewer.subscriber ? 'sub-track' : ''}
+%article.track.media{class: track.viewer.subscriber ? 'sub-track' : '', id: dom_id(track)}
   %figure.media-left
     %p.image.is-64x64
       %img{:src => track.viewer.profile_image_url}/
@@ -8,7 +8,8 @@
         = link_to twitch_account_link(track.viewer.twitch_login), target: :blank, class: 'has-text-black' do
           %strong
             = track.viewer.twitch_display_name
-        = track.soundcloud_url.html_safe
+        = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
+          
     %nav.level.is-mobile
       .level-left
         %a.level-item

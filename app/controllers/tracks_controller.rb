@@ -7,7 +7,7 @@ class TracksController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @tracks = Track.all.includes(:viewer)
+    @tracks = Track.all.includes(:viewer).order('tracks.created_at desc')
     authorize @tracks
     @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
     @pagy, @tracks = pagy(@tracks)

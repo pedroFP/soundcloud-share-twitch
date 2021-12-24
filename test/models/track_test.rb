@@ -30,8 +30,16 @@ class TrackTest < ActiveSupport::TestCase
     assert_not @track.valid?
   end
 
-  test 'it should be valid' do
+  test 'it should be a invalid url' do
     @track.soundcloud_url = 'some_url'
+    @track.viewer = viewers(:not_sub)
+    @track.stream = streams(:one)
+
+    assert_not @track.valid?
+  end
+
+  test 'it should be a valid url' do
+    @track.soundcloud_url = 'https://soundcloud.com/paintrips/star-chasers-prod'
     @track.viewer = viewers(:not_sub)
     @track.stream = streams(:one)
 
