@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class StreamsController < ApplicationController
   include Pagy::Backend
   Pagy::DEFAULT[:items] = 8
@@ -19,6 +21,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/new
   def new
+    authorize Stream
     @stream = Stream.new
   end
 
@@ -28,6 +31,7 @@ class StreamsController < ApplicationController
 
   # POST /streams or /streams.json
   def create
+    authorize Stream
     @stream = Stream.new(stream_params)
     @stream.admin = current_admin
 
@@ -65,13 +69,18 @@ class StreamsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_stream
-      @stream = Stream.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def stream_params
-      params.require(:stream).permit(:title, :aired_at, :receiving_tracks)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_stream
+    @stream = Stream.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def stream_params
+    params.require(:stream).permit(:title, :aired_at, :receiving_tracks)
+  end
+
+  def authorize_stream
+    authorize @stream
+  end
 end
