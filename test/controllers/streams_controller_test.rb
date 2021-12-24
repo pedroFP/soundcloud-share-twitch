@@ -1,8 +1,8 @@
 require 'test_helper'
 
-class TracksControllerTest < ActionDispatch::IntegrationTest
+class StreamsControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get tracks_url
+    get streams_url
     assert_response :success
   end
 

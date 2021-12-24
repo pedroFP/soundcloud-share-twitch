@@ -1,0 +1,11 @@
+<% if @saved %>
+$("#<%= dom_id(@stream) %> .samples").append('<%= j render @sample %>')
+$("#<%= dom_id(@stream) %> .samples-form").html("<%= j render 'form', stream: @stream, sample: Sample.new %>")
+<% else %>
+$("#<%= dom_id(@stream) %> .samples-form").html("<%= j render 'form', stream: @stream, sample: @sample %>")
+// Delete notification on close button
+$('.notification .delete').on('click', (event) => {
+  event.preventDefault()
+  $('#error_explanation').remove()
+})
+<% end %>

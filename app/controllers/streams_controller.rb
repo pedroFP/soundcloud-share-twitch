@@ -1,13 +1,20 @@
 class StreamsController < ApplicationController
-  before_action :set_stream, only: %i[ show edit update destroy ]
+  include Pagy::Backend
+  Pagy::DEFAULT[:items] = 8
+
+  before_action :authenticate_admin!, except: %i[index show]
+  before_action :set_stream, only: %i[show edit update destroy]
 
   # GET /streams or /streams.json
   def index
-    @streams = Stream.all
+    @streams = Stream.all.order(:created_at).includes(:samples)
+    @pagy, @streams = pagy(@streams)
   end
 
   # GET /streams/1 or /streams/1.json
   def show
+    @tracks = @stream.tracks.includes(:viewer)
+    @pagy, @tracks = pagy(@tracks)
   end
 
   # GET /streams/new
@@ -22,6 +29,7 @@ class StreamsController < ApplicationController
   # POST /streams or /streams.json
   def create
     @stream = Stream.new(stream_params)
+    @stream.admin = current_admin
 
     respond_to do |format|
       if @stream.save
