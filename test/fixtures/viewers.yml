@@ -1,0 +1,21 @@
+DEFAULTS: &default_params
+  created_at: <%= Time.zone.now.strftime("%F %T") %>
+  updated_at: <%= Time.zone.now.strftime("%F %T") %>
+
+not_sub:
+  email: "pedro.araya.labra@gmail.com"
+  twitch_id: "60792750"
+  twitch_login: "solamente_pedro"
+  twitch_display_name: "solamente_pedro"
+  profile_image_url: "https://static-cdn.jtvnw.net/user-default-pictures-uv/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-300x300.png"
+  subscriber: false
+  <<: *default_params
+
+sub:
+  email: jpgiordanolorca@gmail.com
+  twitch_id: 203887689
+  twitch_login: jpgiordano
+  twitch_display_name: jpgiordano
+  profile_image_url: "https: static-cdn.jtvnw.net/user-default-pictures-uv/75305d54-c7cc-40d1-bb9c-91fbe85943c7-profile_image-300x300.png"
+  subscriber: true
+  <<: *default_params

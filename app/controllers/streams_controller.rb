@@ -1,19 +1,22 @@
 # frozen_string_literal: true
 
 class StreamsController < ApplicationController
-  before_action :set_stream, only: %i[ show edit update destroy ]
-  before_action :authorize_stream, only: %i[ show edit update destroy ]
-  after_action :verify_authorized, only: %i[ new create show edit update destroy ]
-  after_action :verify_policy_scoped, only: :index
+  include Pagy::Backend
+  Pagy::DEFAULT[:items] = 8
 
+  before_action :authenticate_admin!, except: %i[index show]
+  before_action :set_stream, only: %i[show edit update destroy]
 
   # GET /streams or /streams.json
   def index
-    @streams = policy_scope(Stream.all)
+    @streams = Stream.all.order(:created_at).includes(:samples)
+    @pagy, @streams = pagy(@streams)
   end
 
   # GET /streams/1 or /streams/1.json
   def show
+    @tracks = @stream.tracks.includes(:viewer)
+    @pagy, @tracks = pagy(@tracks)
   end
 
   # GET /streams/new
@@ -30,6 +33,7 @@ class StreamsController < ApplicationController
   def create
     authorize Stream
     @stream = Stream.new(stream_params)
+    @stream.admin = current_admin
 
     respond_to do |format|
       if @stream.save
