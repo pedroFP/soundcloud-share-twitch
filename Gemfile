@@ -43,6 +43,9 @@ gem "figaro"
 # Use Haml
 gem "haml-rails", "~> 2.0"
 
+# Use pundit for authorization manage
+gem "pundit", "~> 2.1.1"
+
 # make API requests
 gem 'rest-client'
 

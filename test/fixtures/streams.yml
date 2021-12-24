@@ -3,3 +3,8 @@ one:
   aired_at: Fri, 12 Nov 2021 02:06:31 UTC +00:00
   receiving_tracks: true
   admin: one
+two:
+  title: Monster Beats
+  aired_at: Fri, 12 Nov 2021 02:06:31 UTC +00:00
+  receiving_tracks: false
+  admin: one

@@ -3,11 +3,11 @@ class Twitch
   USERS_URL = 'https://api.twitch.tv/helix/users'
 
   def self.check_user_subscription(params)
-    params = {
+    query_params = {
       broadcaster_id: params[:broadcaster_id],
       user_id: params[:user_id]
     }
-    response = HTTParty.get(SUBSCRIPTIONS_URL, headers: headers(params[:access_token]), query: params)
+    response = HTTParty.get(SUBSCRIPTIONS_URL, headers: headers(params[:access_token]), query: query_params)
     data = JSON.parse(response.body)
 
     return false if data['error'].present?
