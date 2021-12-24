@@ -3,24 +3,24 @@ class TracksController < ApplicationController
   Pagy::DEFAULT[:items] = 10
 
   before_action :authenticate_viewer!, except: %i[index show]
-  before_action :set_track, only: %i[show destroy]
   before_action :set_stream, except: %i[index show]
-
+  after_action :verify_authorized
 
   def index
     @tracks = Track.all.includes(:viewer)
+    authorize @tracks
     @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
     @pagy, @tracks = pagy(@tracks)
   end
 
-  def show; end
-
   def new
     @track = @stream.tracks.build
+    authorize @track
   end
 
   def create
     @track = Track.new(track_params)
+    authorize @track
     @track.viewer = current_viewer
     respond_to do |format|
       if @track.save
@@ -31,13 +31,7 @@ class TracksController < ApplicationController
     end
   end
 
-  def destroy; end
-
   private
-
-  def set_track
-    @track = Track.find(params[:id])
-  end
 
   def set_stream
     @stream = Stream.find(params[:stream_id])
