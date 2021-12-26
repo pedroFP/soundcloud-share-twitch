@@ -6,7 +6,6 @@ class StreamsController < ApplicationController
 
   before_action :set_stream, only: %i[show edit update destroy]
   before_action :authenticate_admin!, except: %i[index show]
-  after_action :verify_authorized
 
   # GET /streams or /streams.json
   def index
@@ -51,6 +50,7 @@ class StreamsController < ApplicationController
 
   # PATCH/PUT /streams/1 or /streams/1.json
   def update
+    authorize @stream
     respond_to do |format|
       if @stream.update(stream_params)
         format.html { redirect_to @stream, notice: "Stream was successfully updated." }
@@ -64,6 +64,7 @@ class StreamsController < ApplicationController
 
   # DELETE /streams/1 or /streams/1.json
   def destroy
+    authorize @stream
     @stream.destroy
     respond_to do |format|
       format.html { redirect_to streams_url, notice: "Stream was successfully destroyed." }
