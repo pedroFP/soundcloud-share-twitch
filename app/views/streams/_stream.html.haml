@@ -9,7 +9,7 @@
                 = stream.title
           .level-right
             %span.tag.is-link
-              %time{:datetime => stream.aired_at}= stream.aired_at.strftime('%d/%M/%Y-%r')
+              %time{:datetime => stream.aired_at}= stream.aired_at.strftime('%d/%m/%y-%H:%M')
             &nbsp;
             - if stream.receiving_tracks?
               %span.tag.is-danger
