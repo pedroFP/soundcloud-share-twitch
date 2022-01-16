@@ -25,7 +25,7 @@ class StreamsController < ApplicationController
 
   # GET /streams/new
   def new
-    @stream = Stream.new(stream_id: params[:stream_id])
+    @stream = Stream.new
     authorize @stream
   end
 
