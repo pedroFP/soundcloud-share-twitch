@@ -8,6 +8,7 @@ class Viewer < ApplicationRecord
 
   protected
 
+  has_many :likes, dependent: :destroy
   has_many :tracks, dependent: :destroy
 
   def password_required?
