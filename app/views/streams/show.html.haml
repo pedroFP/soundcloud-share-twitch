@@ -2,7 +2,7 @@
 %br
 .columns
   .column.is-four-fifths
-    - unless current_admin
+    - if policy(@new_stream_track).new?
       = link_to new_stream_track_path(@stream), class: 'button' do
         %strong
           Submit track &nbsp;
