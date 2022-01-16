@@ -44,5 +44,35 @@
  }
 
  body {
-   background-color: #f2f2f2;
+   background-color: #121212;
+   width: 100%;
  }
+
+ label {
+  color: antiquewhite !important;
+ } 
+
+ .pagination-link, .pagination-previous, .pagination-next {
+  background-color: #1d1d1d !important;
+  color: antiquewhite !important;
+ }
+
+ .pagination-link.is-current {
+   background-color: #0a0a0a !important;
+   border-color: #c9f100 !important;
+ }
+
+ .card {
+  background-color: #1d1d1d !important;
+}
+
+.navbar-menu.is-active, .navbar-dropdown {
+  background-color: black !important;
+  a:hover {
+    background-color: #363636 !important;
+  }
+}
+
+.navbar-link:not(.is-arrowless)::after {
+  border-color: #f5f5f5 !important;
+}

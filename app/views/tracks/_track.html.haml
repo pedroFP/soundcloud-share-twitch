@@ -4,21 +4,8 @@
       %img{:src => track.viewer.profile_image_url}/
   .media-content
     .content
-      %p
+      %h4
         = link_to twitch_account_link(track.viewer.twitch_login), target: :blank, class: 'has-text-black' do
-          %strong
+          %strong.has-text-light
             = track.viewer.twitch_display_name
-        = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
-          
-    %nav.level.is-mobile
-      .level-left
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-reply
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-retweet
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-heart
-  .media-right
+      = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'

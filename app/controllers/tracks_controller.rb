@@ -24,7 +24,7 @@ class TracksController < ApplicationController
     @track.viewer = current_viewer
     respond_to do |format|
       if @track.save
-        format.html { redirect_to tracks_path, notice: "Track was successfully created." }
+        format.html { redirect_to @track.stream, notice: "Track was successfully created." }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
