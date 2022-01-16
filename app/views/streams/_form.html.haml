@@ -19,7 +19,7 @@
       = form.time_select :aired_at, date_separator: '</div><div class="select mr-1">', prompt: { hour: 'Hour', minute: 'Minute' }
   .field
     = form.label :receiving_tracks, class: 'checkbox' do
-      %strong Receiving tracks
+      %strong.has-text-light Receiving tracks
       = form.check_box :receiving_tracks, class: 'checkbox'
   .actions
     = form.submit 'Save', {class: 'is-primary acid-green-button button'}
