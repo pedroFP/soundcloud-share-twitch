@@ -18,13 +18,14 @@ class StreamsController < ApplicationController
   # GET /streams/1 or /streams/1.json
   def show
     authorize @stream
+    @new_stream_track = @stream.tracks.build
     @tracks = @stream.tracks.order('created_at desc').includes(:viewer)
     @pagy, @tracks = pagy(@tracks)
   end
 
   # GET /streams/new
   def new
-    @stream = Stream.new
+    @stream = Stream.new(stream_id: params[:stream_id])
     authorize @stream
   end
 
@@ -51,6 +52,7 @@ class StreamsController < ApplicationController
 
   # PATCH/PUT /streams/1 or /streams/1.json
   def update
+    authorize @stream
     respond_to do |format|
       if @stream.update(stream_params)
         format.html { redirect_to @stream, notice: "Stream was successfully updated." }
@@ -64,6 +66,7 @@ class StreamsController < ApplicationController
 
   # DELETE /streams/1 or /streams/1.json
   def destroy
+    authorize @stream
     @stream.destroy
     respond_to do |format|
       format.html { redirect_to streams_url, notice: "Stream was successfully destroyed." }
