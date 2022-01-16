@@ -10,6 +10,11 @@ class TracksController < ApplicationController
     @tracks = Track.all.includes(:viewer).order('tracks.created_at desc')
     authorize @tracks
     @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
+    @current_viewer_liked_tracks = if viewer_signed_in?
+                                     current_viewer.liked_tracks.ids
+                                   else
+                                     []
+                                   end 
     @pagy, @tracks = pagy(@tracks)
   end
 

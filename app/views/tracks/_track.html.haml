@@ -9,3 +9,5 @@
           %strong.has-text-light
             = track.viewer.twitch_display_name
       = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
+    %nav.level.is-mobile.likes
+      = render 'likes/like', track: track, liked: @current_viewer_liked_tracks.include?(track.id)

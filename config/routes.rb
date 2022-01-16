@@ -8,9 +8,10 @@ Rails.application.routes.draw do
     devise_for :viewers, skip: %i[registration recoverable confirmable]
   end
   devise_for :admins
-  
+
   resources :tracks, only: %i[index] do
-    resources :likes, only: %i[create destroy]
+    resources :likes, only: %i[create]
+    delete 'like', as: :like, to: 'likes#destroy'
   end
 
   resources :streams do
