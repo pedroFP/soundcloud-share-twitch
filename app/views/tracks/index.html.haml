@@ -1,17 +1,23 @@
 %h1.title.is-1.has-text-light Tracks
 
 .columns
-  .column.is-four-fifths
+  .column.is-three-fifths
     .subtitle.is-6 
       %h6.has-text-light
         Warning, valume may be too high
         %i.fa.fa-volume-up
   .column.has-text-right
-    .search-form
-      %label.checkbox
-        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
-          Sort by subscribers
-      %i.fab.fa-twitch.has-text-link
+    .row
+      .search-form
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-likes', data: { 'tracks-path' => tracks_path } }
+            Sort by likes
+        %i.fas.fa-heart.has-text-link.mr-3.has-text-danger
+
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
+            Sort by subscribers
+        %i.fab.fa-twitch.has-text-link
 
 .tracks
   = render @tracks

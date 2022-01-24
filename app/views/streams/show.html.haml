@@ -1,7 +1,7 @@
 = render @stream
 %br
 .columns
-  .column.is-four-fifths
+  .column.is-three-fifths
     - if policy(@new_stream_track).new?
       = link_to new_stream_track_path(@stream), class: 'button' do
         %strong
@@ -12,12 +12,17 @@
         Warning, valume may be too high
         %i.fa.fa-volume-up
   .column.has-text-right
-    .search-form
-      %label.checkbox
-        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => stream_tracks_path(@stream) } }
-          Sort by subscribers
-      %i.fab.fa-twitch.has-text-link
+    .row
+      .search-form
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-likes', data: { 'tracks-path' => stream_tracks_path(@stream) } }
+            Sort by likes
+        %i.fas.fa-heart.has-text-link.mr-3.has-text-danger
 
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => stream_tracks_path(@stream) } }
+            Sort by subscribers
+        %i.fab.fa-twitch.has-text-link
 .tracks
   = render @tracks
 %br/
