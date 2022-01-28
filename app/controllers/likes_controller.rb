@@ -7,7 +7,7 @@ class LikesController < ApplicationController
     @like = Like.new(track: @track, viewer: current_viewer)
     authorize @like
     @like.save
-    @track.reload
+    @track.create_likes_for_subs current_viewer.subscriber?
     set_current_viewer_liked_tracks
   end
 
@@ -16,7 +16,7 @@ class LikesController < ApplicationController
     authorize @like
 
     @like.destroy
-    @track.reload
+    @track.destroy_likes_for_subs current_viewer.subscriber?
     set_current_viewer_liked_tracks
   end
 
