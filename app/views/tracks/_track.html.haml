@@ -8,6 +8,9 @@
         = link_to twitch_account_link(track.viewer.twitch_login), target: :blank, class: 'has-text-black' do
           %strong.has-text-light
             = track.viewer.twitch_display_name
+          - if track.viewer.subscriber?
+            &nbsp;
+            %i.fas.fa-star.acid-green
       = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
     %nav.level.is-mobile.likes
       = render 'likes/like', track: track, liked: @current_viewer_liked_tracks.include?(track.id)
