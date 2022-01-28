@@ -6,8 +6,7 @@ class LikesController < ApplicationController
   def create
     @like = Like.new(track: @track, viewer: current_viewer)
     authorize @like
-    @like.save
-    @track.create_likes_for_subs current_viewer.subscriber?
+    @track.create_likes current_viewer, track: @track, viewer: current_viewer
     set_current_viewer_liked_tracks
   end
 
@@ -15,8 +14,7 @@ class LikesController < ApplicationController
     @like = Like.find_by(track: @track, viewer: current_viewer)
     authorize @like
 
-    @like.destroy
-    @track.destroy_likes_for_subs current_viewer.subscriber?
+    @track.destroy_likes_from current_viewer
     set_current_viewer_liked_tracks
   end
 

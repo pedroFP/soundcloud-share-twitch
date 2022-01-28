@@ -7,13 +7,14 @@ class Track < ApplicationRecord
 
   validates :soundcloud_url, presence: true, format: { with: SOUND_CLOUD_REGEX }
 
-  def create_likes_for_subs(viewer_is_sub)
-    2.times { Track.increment_counter :likes_count, id } if viewer_is_sub
+  def create_likes(viewer, new_like_attributes)
+    likes_amount = viewer.subscriber? ? 3 : 1
+    likes_amount.times { Like.create new_like_attributes }
     reload
   end
 
-  def destroy_likes_for_subs(viewer_is_sub)
-    2.times { Track.decrement_counter :likes_count, id } if viewer_is_sub
+  def destroy_likes_from(viewer)
+    likes.where(viewer_id: viewer.id).destroy_all
     reload
   end
 end

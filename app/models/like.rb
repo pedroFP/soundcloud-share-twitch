@@ -5,8 +5,10 @@ class Like < ApplicationRecord
   validate :search_repeated, on: %i[create]
 
   def search_repeated
-    return if viewer.likes.where(track_id: track_id).empty?
+    max_like_amount = viewer.subscriber? ? 3 : 1
 
-    errors.add :viewer, :repeated, message: 'Cannot like the same track twice'
+    return if viewer.likes.where(track_id: track_id).size < max_like_amount
+
+    errors.add :viewer, :repeated, message: 'Cannot like the same track'
   end
 end
