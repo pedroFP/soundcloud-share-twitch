@@ -78,7 +78,7 @@ class StreamsController < ApplicationController
   private
 
   def reorder_tracks
-    @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
+    @tracks = @tracks.order('viewers.subscriber desc') if params['sortBySub'] == 'true'
     @tracks = @tracks.reorder('likes_count desc') if params['sortByLikes'] == 'true'
   end
 
