@@ -8,10 +8,9 @@
       %span{"aria-hidden" => "true"}
   #navbarBasicExample.navbar-menu
     .navbar-start
-      %a.navbar-item
-        = link_to streams_path, class: 'navbar-item' do
-          %strong.acid-green
-            Streams
+      = link_to streams_path, class: 'navbar-item' do
+        %strong.acid-green
+          Streams
       = link_to tracks_path, class: 'navbar-item' do
         %strong.acid-green
           Tracks
@@ -24,8 +23,18 @@
             .navbar-dropdown
               = link_to destroy_viewer_session_path, method: :delete, class: 'navbar-item' do
                 Sign out
-        - else
+        - elsif !current_admin
           .buttons
             %a.button.is-light{href: twitch_login_url}
               %i.fab.fa-twitch.is-dark.fa-lg
               &nbsp; Log in
+        - if admin_signed_in?
+          .navbar-item.has-dropdown.is-hoverable
+            %a.navbar-link.has-text-light
+              %i.fas.fa-user-shield
+              &nbsp; Admin
+            .navbar-dropdown
+              = link_to 'New stream', new_stream_path, class: 'navbar-item has-text-light'
+              = link_to destroy_admin_session_path, method: :delete, class: 'navbar-item has-text-light' do
+                Sign out
+                

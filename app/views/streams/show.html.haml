@@ -1,13 +1,30 @@
-%p#notice= notice
-%p
-  %strong Title:
-  = @stream.title
-%p
-  %strong Aired at:
-  = @stream.aired_at
-%p
-  %strong Receiving tracks:
-  = @stream.receiving_tracks
-= link_to 'Edit', edit_stream_path(@stream)
-|
-= link_to 'Back', streams_path
+= render @stream
+%br
+.columns
+  .column.is-three-fifths
+    - if policy(@new_stream_track).new?
+      = link_to new_stream_track_path(@stream), class: 'button' do
+        %strong
+          Submit track &nbsp;
+        %i.fab.fa-soundcloud.fa-2x.soundcloud-orange
+    .content.is-small
+      %p.has-text-light
+        Warning, valume may be too high
+        %i.fa.fa-volume-up
+  .column.has-text-right
+    .row
+      .search-form
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-likes', data: { 'tracks-path' => stream_tracks_path(@stream) } }
+            Sort by likes
+        %i.fas.fa-heart.has-text-link.mr-3.has-text-danger
+
+        %label.checkbox
+          %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => stream_tracks_path(@stream) } }
+            Sort by subscribers
+        %i.fab.fa-twitch.has-text-link
+.tracks
+  = render @tracks
+%br/
+.tracks-pagination
+  = pagy_bulma_nav(@pagy).html_safe

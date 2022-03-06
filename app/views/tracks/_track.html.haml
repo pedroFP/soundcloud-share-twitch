@@ -1,23 +1,16 @@
-%article.media{class: track.viewer.subscriber ? 'sub-track' : ''}
+%article.track.media{id: dom_id(track)}
   %figure.media-left
     %p.image.is-64x64
       %img{:src => track.viewer.profile_image_url}/
   .media-content
     .content
-      %p
+      %h4
         = link_to twitch_account_link(track.viewer.twitch_login), target: :blank, class: 'has-text-black' do
-          %strong
+          %strong.has-text-light
             = track.viewer.twitch_display_name
-        = track.soundcloud_url.html_safe
-    %nav.level.is-mobile
-      .level-left
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-reply
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-retweet
-        %a.level-item
-          %span.icon.is-small
-            %i.fas.fa-heart
-  .media-right
+          - if track.viewer.subscriber?
+            &nbsp;
+            %i.fas.fa-star.acid-green
+      = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
+    %nav.level.is-mobile.likes
+      = render 'likes/like', track: track, liked: @current_viewer_liked_tracks.include?(track.id)
