@@ -1,0 +1,10 @@
+.level-left
+  - url = track_review_path(track)
+  - method = :patch
+  - color = reviewed
+
+  = link_to url, method: method, remote: true, class: "level-item #{ reviewed ? '' : 'has-text-danger'}" do
+    %span.icon.is-small
+      %i.fas.fa-check-circle
+    &nbsp;
+    
