@@ -11,6 +11,19 @@ $(document).on('change', '.sort-by-sub:checkbox', (event) => {
   });
 })
 
+// Sort tracks by liked tracks
+$(document).on('change', '.sort-by-likes:checkbox', (event) => {
+  const element = $(event.target)
+  $.ajax({
+    url: element.data('tracks-path'),
+    type: "GET",
+    dataType: 'script',
+    data: {
+      sortByLikes: element.prop('checked')
+    },
+  });
+})
+
 // Display tracks sorter checked or not
 $(document).on('turbolinks:load', function () {
   params = new URLSearchParams(window.location.search)

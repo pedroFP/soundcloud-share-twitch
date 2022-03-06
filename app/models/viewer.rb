@@ -6,9 +6,11 @@ class Viewer < ApplicationRecord
 
   attr_accessor :skip_password_validation  # virtual attribute to skip password validation while saving
 
-  protected
-
+  has_many :likes, dependent: :destroy
   has_many :tracks, dependent: :destroy
+  has_many :liked_tracks, through: :likes, source: :track
+  
+  protected
 
   def password_required?
     return false if skip_password_validation

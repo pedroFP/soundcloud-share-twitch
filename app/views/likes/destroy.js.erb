@@ -1,0 +1,1 @@
+  $("#<%= dom_id @track %> .likes").html("<%= j render 'likes/like', track: @track, liked: @current_viewer_liked_tracks.include?(@track.id) %>")
