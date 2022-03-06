@@ -4,10 +4,9 @@ class TracksController < ApplicationController
 
   before_action :authenticate_viewer!, except: %i[index show review]
   before_action :set_stream, except: %i[index show review]
-  before_action :authenticate_admin!, only: %i[review]
-  before_action :set_track, only: %i[review]
-  before_action :authenticate_admin!, only: %i[review]
-  after_action :verify_authorized, except: %i[review]
+  before_action :authenticate_admin!, only: :review
+  before_action :set_track, only: :review
+  after_action :verify_authorized, except: :review
 
   def index
     @tracks = Track.all.includes(:viewer).order('tracks.created_at desc')
