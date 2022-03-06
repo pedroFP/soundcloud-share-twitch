@@ -35,6 +35,7 @@ class TracksController < ApplicationController
   private
 
   def reorder_tracks
+    @tracks = @tracks.order('viewers.subscriber desc, tracks.created_at desc') if admin_signed_in?
     @tracks = @tracks.order('viewers.subscriber desc') if params['sortBySub'] == 'true'
     @tracks = @tracks.reorder('likes_count desc') if params['sortByLikes'] == 'true'
   end
