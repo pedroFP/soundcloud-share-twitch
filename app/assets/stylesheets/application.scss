@@ -80,6 +80,10 @@
 .section {
   background-image: url("background.png");
   background-repeat: repeat;
-  min-height: 100%;
 }
 
+.section, .container {
+  max-width: 100% !important;
+  width: 100% !important;
+  height: 100% !important;
+}
