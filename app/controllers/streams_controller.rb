@@ -19,7 +19,7 @@ class StreamsController < ApplicationController
     authorize @stream
     @new_stream_track = @stream.tracks.build
     @tracks = @stream.tracks.order('likes_count desc').includes(:viewer)
-    reoder_tracks if admin_signed_in?
+    reorder_tracks if admin_signed_in?
     @current_viewer_liked_tracks = viewer_signed_in? ? current_viewer.liked_tracks.ids : []
     @pagy, @tracks = pagy(@tracks)
   end
@@ -77,7 +77,7 @@ class StreamsController < ApplicationController
 
   private
 
-  def reoder_tracks
+  def reorder_tracks
     @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
     @tracks = @tracks.reorder('likes_count desc') if params['sortByLikes'] == 'true'
   end
