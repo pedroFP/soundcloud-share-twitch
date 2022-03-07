@@ -12,5 +12,9 @@
             &nbsp;
             %i.fas.fa-star.acid-green
       = link_to 'url', track.soundcloud_url, class: 'soundcloud-url'
-    %nav.level.is-mobile.likes
-      = render 'likes/like', track: track, liked: @current_viewer_liked_tracks.include?(track.id)
+    %nav.level.is-mobile
+      .likes
+        = render 'likes/like', track: track, liked: @current_viewer_liked_tracks.include?(track.id)
+      - if current_admin 
+        .review
+          = render 'tracks/reviewed', track: track, reviewed: track.reviewed

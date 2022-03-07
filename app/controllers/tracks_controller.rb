@@ -2,9 +2,11 @@ class TracksController < ApplicationController
   include Pagy::Backend
   Pagy::DEFAULT[:items] = 10
 
-  before_action :authenticate_viewer!, except: %i[index show]
-  before_action :set_stream, except: %i[index show]
-  after_action :verify_authorized
+  before_action :authenticate_viewer!, except: %i[index show review]
+  before_action :set_stream, except: %i[index show review]
+  before_action :authenticate_admin!, only: :review
+  before_action :set_track, only: :review
+  after_action :verify_authorized, except: :review
 
   def index
     @tracks = Track.all.includes(:viewer).order('tracks.likes_count desc')
@@ -32,6 +34,13 @@ class TracksController < ApplicationController
     end
   end
 
+  def review
+    @track.update(reviewed: !@track.reviewed)
+    respond_to do |format|
+      format.js
+    end
+  end
+
   private
 
   def reorder_tracks
@@ -45,6 +54,10 @@ class TracksController < ApplicationController
 
   def track_params
     params.require(:track).permit(:soundcloud_url, :stream_id, :viewer_id)
+  end
+
+  def set_track
+    @track = Track.find(params[:id])
   end
 
 end
