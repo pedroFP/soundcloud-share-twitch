@@ -30,4 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  hello: "Hello world"
+ pundit:
+   default: 'You cannot perform this action.'
+   like_policy:
+     create?: 'You cannot like this track'
+     destroy?: 'You cannot remove your like from this track'
