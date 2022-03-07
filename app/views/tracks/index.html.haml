@@ -6,19 +6,6 @@
       %h6.has-text-light
         Warning, valume may be too high
         %i.fa.fa-volume-up
-  .column.has-text-right
-    .row
-      - if admin_signed_in?
-        .search-form
-          %label.checkbox
-            %input{ type: :checkbox, class: 'sort-by-likes', data: { 'tracks-path' => tracks_path } }
-              Sort by likes
-          %i.fas.fa-heart.has-text-link.mr-3.has-text-danger
-
-          %label.checkbox
-            %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
-              Sort by subscribers
-          %i.fab.fa-twitch.has-text-link
 
 .tracks
   = render @tracks
