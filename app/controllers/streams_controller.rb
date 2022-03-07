@@ -18,8 +18,8 @@ class StreamsController < ApplicationController
   def show
     authorize @stream
     @new_stream_track = @stream.tracks.build
-    @tracks = @stream.tracks.order('created_at desc').includes(:viewer)
-    @tracks = @tracks.reorder('likes_count desc') if params['sortByLikes'] == 'true'
+    @tracks = @stream.tracks.order('likes_count desc').includes(:viewer)
+    reorder_tracks if admin_signed_in?
     @current_viewer_liked_tracks = viewer_signed_in? ? current_viewer.liked_tracks.ids : []
     @pagy, @tracks = pagy(@tracks)
   end
@@ -76,6 +76,11 @@ class StreamsController < ApplicationController
   end
 
   private
+
+  def reorder_tracks
+    @tracks = @tracks.reorder('likes_count desc')
+    @tracks = @tracks.reorder('viewers.subscriber desc, tracks.created_at desc') if admin_signed_in?
+  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_stream

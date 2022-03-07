@@ -7,10 +7,9 @@ class TracksController < ApplicationController
   after_action :verify_authorized
 
   def index
-    @tracks = Track.all.includes(:viewer).order('tracks.created_at desc')
+    @tracks = Track.all.includes(:viewer).order('tracks.likes_count desc')
     authorize @tracks
-    @tracks = @tracks.where(viewers: { subscriber: params['sortBySub'] }) if params['sortBySub'] == 'true'
-    @tracks = @tracks.reorder('likes_count desc') if params['sortByLikes'] == 'true'
+    reorder_tracks if admin_signed_in?
     @current_viewer_liked_tracks = viewer_signed_in? ? current_viewer.liked_tracks.ids : []
     @pagy, @tracks = pagy(@tracks)
   end
@@ -34,6 +33,11 @@ class TracksController < ApplicationController
   end
 
   private
+
+  def reorder_tracks
+    @tracks = @tracks.reorder('likes_count desc')
+    @tracks = @tracks.order('viewers.subscriber desc, tracks.created_at desc') if admin_signed_in?
+  end
 
   def set_stream
     @stream = Stream.find(params[:stream_id])
