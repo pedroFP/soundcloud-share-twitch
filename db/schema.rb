@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_16_044907) do
+ActiveRecord::Schema.define(version: 2022_03_06_195629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_01_16_044907) do
     t.datetime "updated_at", precision: 6, null: false
     t.bigint "stream_id", null: false
     t.integer "likes_count", default: 0, null: false
+    t.boolean "reviewed", default: false, null: false
     t.index ["stream_id"], name: "index_tracks_on_stream_id"
     t.index ["viewer_id"], name: "index_tracks_on_viewer_id"
   end

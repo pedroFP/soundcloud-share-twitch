@@ -14,6 +14,8 @@ Rails.application.routes.draw do
     delete 'like', as: :like, to: 'likes#destroy'
   end
 
+  patch '/tracks/:id', to: 'tracks#review', as: 'track_review'
+
   resources :streams do
     resources :tracks, only: %i[index new create]
     resources :samples, only: %i[create destroy]
