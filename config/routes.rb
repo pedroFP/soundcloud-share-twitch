@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: 'streams#index'
+  root to: 'home#index'
   get 'twitch/login'
   post 'twitch/sign_user'
   if ENV['RAILS_ENV'] == 'development'

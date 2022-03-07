@@ -1,18 +1,20 @@
-= render @stream
-%br
-.columns
-  .column.is-three-fifths
-    - if policy(@new_stream_track).new?
-      = link_to new_stream_track_path(@stream), class: 'button' do
-        %strong
-          Submit track &nbsp;
-        %i.fab.fa-soundcloud.fa-2x.soundcloud-orange
-    .content.is-small
-      %p.has-text-light
-        Warning, valume may be too high
-        %i.fa.fa-volume-up
-.tracks
-  = render @tracks
-%br/
-.tracks-pagination
-  = pagy_bulma_nav(@pagy).html_safe
+.column.is-6.is-offset-3
+  = render 'shared/top_m_beats'
+  = render @stream
+  %br
+  .columns
+    .column.is-three-fifths
+      - if policy(@new_stream_track).new?
+        = link_to new_stream_track_path(@stream), class: 'button' do
+          %strong
+            Submit track &nbsp;
+          %i.fab.fa-soundcloud.fa-2x.soundcloud-orange
+      .content.is-small
+        %p.has-text-light
+          Warning, valume may be too high
+          %i.fa.fa-volume-up
+  .tracks
+    = render @tracks
+  %br/
+  .tracks-pagination
+    = pagy_bulma_nav(@pagy).html_safe

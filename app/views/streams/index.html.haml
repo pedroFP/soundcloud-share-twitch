@@ -1,2 +1,4 @@
-= render @streams
-= pagy_bulma_nav(@pagy).html_safe
+.column.is-6.is-offset-3
+  = render 'shared/top_m_beats'
+  = render @streams
+  = pagy_bulma_nav(@pagy).html_safe

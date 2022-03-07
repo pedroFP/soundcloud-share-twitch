@@ -8,12 +8,12 @@
       %span{"aria-hidden" => "true"}
   #navbarBasicExample.navbar-menu
     .navbar-start
+      = link_to root_path, class: 'navbar-item' do
+        %strong.acid-green
+          Inicio
       = link_to streams_path, class: 'navbar-item' do
         %strong.acid-green
           Streams
-      = link_to tracks_path, class: 'navbar-item' do
-        %strong.acid-green
-          Tracks
     .navbar-end
       .navbar-item
         - if viewer_signed_in?
