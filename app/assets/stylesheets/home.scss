@@ -1,3 +1,30 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+
+.home-container {
+  img {
+    width: 100%;
+  }
+
+  .main-text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 18pt;
+    line-height : 28pt;
+    color: white;
+  }
+
+  .stream-index-button {
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20pt;
+    color: black;
+    background-color: #d9ff00;
+    border-radius: 10px;
+    border: 0;
+    height: 70px;
+    cursor: pointer;
+  }
+}

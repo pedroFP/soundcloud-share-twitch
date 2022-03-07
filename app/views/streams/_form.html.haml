@@ -1,6 +1,7 @@
 = form_with(model: stream, local: true) do |form|
   - if stream.errors.any?
-    #error_explanation
+    .notification.is-danger#error_explanation
+      %button.delete
       %h2
         = pluralize(stream.errors.count, "error")
         prohibited this stream from being saved:
@@ -8,13 +9,15 @@
         - stream.errors.full_messages.each do |message|
           %li= message
   .field
-    = form.label :title
-    = form.text_field :title
+    = form.label :title, class: 'label'
+    = form.text_field :title, class: 'input'
   .field
-    = form.label :aired_at
-    = form.datetime_select :aired_at
+    = form.label :aired_at, class: 'label'
+    = form.datetime_field :aired_at
   .field
-    = form.label :receiving_tracks
-    = form.check_box :receiving_tracks
+    = form.label :receiving_tracks, class: 'checkbox' do
+      %strong.has-text-light Receiving tracks
+      = form.check_box :receiving_tracks, class: 'checkbox'
   .actions
-    = form.submit
+    = form.submit 'Save', {class: 'is-primary acid-green-button button'}
+

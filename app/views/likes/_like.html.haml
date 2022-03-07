@@ -1,0 +1,17 @@
+.level-left
+  - if !liked
+    - url = track_likes_path(track)
+    - method = :post
+    = link_to url, method: method, remote: true, class: 'level-item has-text-danger' do
+      %span.icon.is-small
+        %i.fas.fa-heart
+      &nbsp;
+      .likes-count
+        = track.likes_count
+  - else
+    .level-item.has-text-danger
+      %span.icon.is-small
+        %i.fas.fa-heart
+      &nbsp;
+      .likes-count
+        = track.likes_count

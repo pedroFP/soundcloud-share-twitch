@@ -1,24 +1,11 @@
-.columns
-  .column.is-four-fifths
-    %h1.title.is-1 Tracks
-  .column.level
-    .level-right
-      = link_to new_track_path do
-        %button.is-primary.acid-green-button.button.level-item
-          %strong New track
+%h1.title.is-1.has-text-light Tracks
 
 .columns
-  .column.is-four-fifths
+  .column.is-three-fifths
     .subtitle.is-6 
-      %h6
+      %h6.has-text-light
         Warning, valume may be too high
         %i.fa.fa-volume-up
-  .column.has-text-right
-    .search-form
-      %label.checkbox
-        %input{ type: :checkbox, class: 'sort-by-sub', data: { 'tracks-path' => tracks_path } }
-          Sort by subscribers
-      %i.fab.fa-twitch.has-text-link
 
 .tracks
   = render @tracks
