@@ -3,10 +3,28 @@
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
 .home-container {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
   img {
     width: 100%;
+  }
+
+  .main-text {
+    font-family: "Open Sans", sans-serif;
+    font-size: 18pt;
+    line-height : 28pt;
+    color: white;
+  }
+
+  .stream-index-button {
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20pt;
+    color: black;
+    background-color: rgb(216, 255, 0);
+    border-radius: 10px;
+    border: 0;
+    height: 70px;
+    cursor: pointer;
   }
 }

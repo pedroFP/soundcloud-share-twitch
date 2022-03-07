@@ -1,4 +1,8 @@
-.column.home-container.is-4.is-offset-4.p-0
+.column.home-container.is-4.is-offset-4.p-0.pt-6
   = image_tag "logo_mbeats.png"
-  .main-text 
+  .main-text.pt-6.px-1
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+  .column.is-6.is-offset-3.p-0.py-6
+    = button_to streams_path, { method: 'get', class: 'btn stream-index-button' } do 
+      VER STREAMS
+      %i.fa.fa-solid.fa-caret-right.pl-2
