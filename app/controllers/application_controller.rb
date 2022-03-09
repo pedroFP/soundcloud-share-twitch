@@ -10,6 +10,10 @@ class ApplicationController < ActionController::Base
     current_session
   end
 
+  def after_sign_in_path_for(resource)
+    stored_location_for(resource) || root_path
+  end
+
   protected
 
   def authenticate_viewer!
