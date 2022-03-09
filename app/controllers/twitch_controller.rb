@@ -24,6 +24,5 @@ class TwitchController < ApplicationController
     cookies[:twitch_access_token] = access_token
 
     sign_in @viewer
-    redirect_to root_path
   end
 end
