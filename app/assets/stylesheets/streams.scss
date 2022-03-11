@@ -1,9 +1,22 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap');
 
-.stream-card-content {
-  background-color: #363636 !important;
+.stream-cards {
+  display: flex;
+  gap: 50px 30px;
+  flex-wrap: wrap;
 }
 
-.stream-title {
-  font-family: 'Roboto', sans-serif !important;
+.stream-card {
+  flex: 1 0 26%;
+  background-color: #96a4a6;
+  border-radius: 20px;
+  max-width: 33%;
+
+  &:hover {
+    background-color: #d9ff00;;
+  }
+}
+
+.empty-card {
+  background-color: rgba(0,0,0,0) !important;
 }

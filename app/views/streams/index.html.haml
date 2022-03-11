@@ -1,4 +1,9 @@
 .column.is-6.is-offset-3
   = render 'shared/top_m_beats'
-  = render @streams
+  .stream-cards
+    = render @streams
+    - if @streams.size % 3 != 0
+      - (3 - @streams.size % 3).times do
+        .stream-card.empty-card
   = pagy_bulma_nav(@pagy).html_safe
+ 
