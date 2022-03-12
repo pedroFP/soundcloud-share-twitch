@@ -5,3 +5,18 @@
       = stream.aired_at.strftime('%d/%m - %H:%M')
     .stream-title
       = stream.title
+    .stream-tracks
+      - if stream.receiving_tracks
+        = button_to stream_path(stream), { method: 'get', class: 'btn stream-track-button' } do 
+          Samples
+          %i.fa.fa-solid.fa-caret-right.pl-2
+        = button_to stream_path(stream), { method: 'get', class: 'btn stream-track-button' } do 
+          Sube tu track
+          %i.fa.fa-solid.fa-caret-right.pl-2
+      - else
+        = button_to stream_path(stream), { method: 'get', class: 'btn stream-track-button' } do 
+          Escuchar tracks 
+          %i.fa.fa-solid.fa-caret-right.pl-2
+        
+        
+        
