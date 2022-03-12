@@ -79,4 +79,12 @@
   font-size: 20pt;
   text-align: center;
   border-radius: 10px;
+
+  @media all and (max-width: 1919px) {
+    font-size: 13pt;
+  }
+
+  @media all and (max-width: $desktop) {
+    font-size: 20pt;
+  }
 }
