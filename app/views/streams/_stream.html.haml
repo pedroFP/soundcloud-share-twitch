@@ -1,5 +1,6 @@
 .stream-card{id: dom_id(stream)}
   = link_to stream do
+    = image_tag("default_stream_image.jpg", class: 'stream-image')
     .p-4.title
       = stream.title
     .p-4
