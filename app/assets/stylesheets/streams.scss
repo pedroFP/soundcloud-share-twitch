@@ -70,3 +70,41 @@
   text-align: center;
   border-radius: 10px;
 }
+
+.stream-information {
+  background-color: #d9ff00;
+  height: 300px;
+  border-radius: 30px;
+
+  .stream-image {
+    padding: 10px;
+    padding-right: 20px;
+    height: 100%;
+  }
+
+  .stream-date, .stream-title {
+    text-align: left;
+  }
+
+  .stream-description {
+    padding-top: 20px;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-size: 15pt;
+    line-height: 20pt;
+  }
+
+  .aired-label {
+    text-align: center;
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
+    font-style: italic;
+    font-size: 20pt;
+    border-radius: 10px;
+    color: white;
+    margin: 15px;
+    width: 60%;
+    height: 40px;
+    background-color: #e74c3c;
+  }
+}

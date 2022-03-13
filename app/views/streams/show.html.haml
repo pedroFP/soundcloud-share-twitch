@@ -1,6 +1,20 @@
-.column.is-6.is-offset-3
+.column.is-6-desktop.is-offset-3-desktop
   = render 'shared/top_m_beats'
-  = render @stream
+  .columns.stream-information
+    .column.is-4
+      = image_tag("default_stream_image.jpg", class: 'stream-image')
+    .column.is-4
+      .stream-date
+        = @stream.aired_at.strftime('%d/%m - %H:%M')
+      .stream-title
+        = @stream.title
+      .stream-description
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+    .column.is-4.is-flex.is-justify-content-right
+      -if @stream.receiving_tracks
+        .aired-label
+          %i.fa.fa-circle
+          EN VIVO
   %br
   .columns
     .column.is-three-fifths
@@ -18,3 +32,19 @@
   %br/
   .tracks-pagination
     = pagy_bulma_nav(@pagy).html_safe
+
+    -# %hr/
+    -# .content
+    -#   %h4.is-4.has-text-white Samples
+    -#   - if current_admin
+    -#     .content.samples-form
+    -#       = render 'samples/form', sample: Sample.new, stream: stream
+    -#   = render 'samples', stream: stream
+    -# - if current_admin
+    -#   .content
+    -#     = link_to edit_stream_path(stream), class: 'mr-1' do
+    -#       %span.tag.is-light
+    -#         Edit
+    -#     = link_to stream, method: :delete, data: { confirm: 'Are you sure?' } do
+    -#       %span.tag.is-danger
+    -#         Delete
