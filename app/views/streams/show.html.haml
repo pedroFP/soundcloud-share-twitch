@@ -10,11 +10,18 @@
         = @stream.title
       .stream-description
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-    .column.is-4.is-flex.is-justify-content-right
-      -if @stream.receiving_tracks
-        .aired-label
-          %i.fa.fa-circle
-          EN VIVO
+    .column.is-4.is-flex.is-flex-direction-column.is-justify-content-space-between
+      .is-flex.is-justify-content-right
+        - if @stream.receiving_tracks
+          .aired-label
+            %i.fa.fa-circle
+            EN VIVO
+      - if current_admin
+        .is-flex.is-justify-content-end
+          = button_to edit_stream_path(@stream), { method: 'get', class: 'btn edit-button' } do 
+            Editar
+          = button_to stream_path(@stream), { method: 'delete', class: 'btn delete-button', data: { confirm: 'Are you sure?' } } do 
+            Eliminar
   %br
   .columns
     .column.is-three-fifths
@@ -33,18 +40,3 @@
   .tracks-pagination
     = pagy_bulma_nav(@pagy).html_safe
 
-    -# %hr/
-    -# .content
-    -#   %h4.is-4.has-text-white Samples
-    -#   - if current_admin
-    -#     .content.samples-form
-    -#       = render 'samples/form', sample: Sample.new, stream: stream
-    -#   = render 'samples', stream: stream
-    -# - if current_admin
-    -#   .content
-    -#     = link_to edit_stream_path(stream), class: 'mr-1' do
-    -#       %span.tag.is-light
-    -#         Edit
-    -#     = link_to stream, method: :delete, data: { confirm: 'Are you sure?' } do
-    -#       %span.tag.is-danger
-    -#         Delete
