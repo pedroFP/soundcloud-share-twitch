@@ -22,6 +22,13 @@
             Editar
           = button_to stream_path(@stream), { method: 'delete', class: 'btn delete-button', data: { confirm: 'Are you sure?' } } do 
             Eliminar
+  %hr
+    .content
+      %h4.is-4.has-text-white Samples
+      - if current_admin
+        .content.samples-form
+          = render 'samples/form', sample: Sample.new, stream: @stream
+      = render 'samples', stream: @stream
   %br
   .columns
     .column.is-three-fifths
