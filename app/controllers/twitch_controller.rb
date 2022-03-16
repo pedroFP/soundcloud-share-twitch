@@ -25,6 +25,5 @@ class TwitchController < ApplicationController
 
     sign_in @viewer
 
-    redirect_to root_path
   end
 end
