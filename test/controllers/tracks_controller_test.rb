@@ -9,7 +9,7 @@ class TracksControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "Viewer should get new" do
-    @viewer = viewers(:not_sub)
+    @viewer = viewers(:sub) # has no tracks on this stream
     @stream = streams(:one)
     sign_in @viewer
 
