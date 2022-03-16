@@ -1,4 +1,10 @@
-.column.is-6.is-offset-3
+.column.is-6-desktop.is-offset-3-desktop
   = render 'shared/top_m_beats'
-  = render @streams
-  = pagy_bulma_nav(@pagy).html_safe
+  .stream-cards
+    = render @streams.reorder(aired_at: :desc)
+    - if @streams.size % 3 != 0
+      - (3 - @streams.size % 3).times do
+        .stream-card.empty-card
+  .pt-5
+    = pagy_bulma_nav(@pagy).html_safe
+ 
